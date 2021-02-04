@@ -177,13 +177,15 @@ public class Person implements java.io.Serializable{
 		if(!this.role.isEmpty()){
 			roleList = "Role List:\n";
 			for (Role roles : this.role) {
-				roleList = roleList + "\tRole Id: " + roles.getRoleId() + ",\n\tRole:" + StringUtils.capitalize(roles.getRole()) + ",\n";
+				roleList = roleList + "   Role:\n" +
+				"\tRole Id: " + roles.getRoleId() + ",\n\tRole:" + StringUtils.capitalize(roles.getRole()) + ",\n";
 			}
 		}
 		if(!this.contact.isEmpty()){
 			contactList = "Contact List: \n";
 			for (Contact contacts : this.contact) {
 				contactList = contactList + 
+				"   Contact:" +
 				"\tContact Id: " + contacts.getContactId() +
 				",\n\tLandline Number: " + contacts.getLandLine() + 
 				",\n\tMobile Number: 0" + contacts.getMobileNumber() +

@@ -11,6 +11,6 @@
         <property name="mobileNumber" column="mobile_number" type = "long"/>
         <property name="email" column="email" type = "string"/>
 		<many-to-one name="person" class="Person"
-            column="person_id" not-null="true" />
+            column="person_id"  />
     </class> 
 </hibernate-mapping>

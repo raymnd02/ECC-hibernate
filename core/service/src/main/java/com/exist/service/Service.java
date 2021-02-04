@@ -6,6 +6,7 @@ import org.apache.commons.validator.GenericValidator;
 import org.apache.commons.lang3.StringUtils;
 import java.text.*;
 public class Service {
+	
 	public static Person addPerson(Scanner sc){
 		String firstName = Checker.notNullString("First Name*: ",sc).toLowerCase();
 		System.out.print("Middle Name: ");
@@ -22,9 +23,9 @@ public class Service {
 		int zipcode = Checker.inputIsNumeric("Zipcode*: ",sc);
 		Date birthDay = Checker.inputDate("Birthday: ",sc);
 		Date dateHired = Checker.inputDate("Date Hired: ",sc);
+		boolean currentEmployed = Checker.inputBoolean("Current Employed(Y/N): ",sc);
 		double gradeWeightedAverage = Checker.inputIsDouble("Grade Weighted Average: ",sc);
 		
-		boolean currentEmployed = Checker.inputBoolean("Current Employed(Y/N): ",sc);
 		
 		Person personAdd = new Person(firstName,lastName,birthDay,gradeWeightedAverage,dateHired,currentEmployed);
 		personAdd.setMiddleName(middleName);

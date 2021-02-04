@@ -24,14 +24,14 @@
         <property name="gradeWeightedAverage" column="grade_weighted_average" type = "double"/>
         <property name="dateHired" column="date_hired" type = "date"/>
         <property name="currentEmployed" column="current_employed" type = "boolean"/>
-		<bag name="contact" lazy="false">
+		<bag name="contact" lazy="false" cascade="all">
 			<key column="person_id" not-null="false" />
 			<one-to-many class="Contact"/>
 		</bag>
 		
-		<bag name="role" table="person_role" inverse="false" lazy="false" fetch="select" cascade="all">
+		<bag name="role" table="person_role" inverse="false" lazy="false"  cascade="all">
 			<key column="person_id" not-null="true"/>
-			<many-to-many entity-name="com.exist.model.Role">
+			<many-to-many entity-name="com.exist.model.Role" >
                 <column name="role_id" not-null="true" />
             </many-to-many>
 		</bag>

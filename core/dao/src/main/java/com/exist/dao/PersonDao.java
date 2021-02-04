@@ -80,7 +80,8 @@ public class PersonDao {
     public void delete(Person entity) {
         getCurrentSession().delete(entity);
     }
- 
+	
+	
     public List<Person> findAll() {
         List<Person> persons = (List<Person>) getCurrentSession().createQuery("from Person").list();
         return persons;
@@ -95,5 +96,6 @@ public class PersonDao {
         List<Person> persons = (List<Person>) getCurrentSession().createQuery("from Person ORDER BY date_hired").list();
         return persons;
     }
+	
  
 }

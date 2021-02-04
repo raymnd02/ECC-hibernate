@@ -29,11 +29,9 @@ CREATE TABLE contact (
     landline NUMERIC,
     mobile_number NUMERIC,
     email VARCHAR(255),
-    person_id INTEGER NOT NULL,
+    person_id INTEGER,
     FOREIGN KEY (person_id)
         REFERENCES person (person_id) 
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
 );
 
 CREATE TABLE role (
@@ -45,11 +43,7 @@ CREATE TABLE person_role (
     person_id INTEGER NOT NULL,
     role_id INTEGER NOT NULL,
     FOREIGN KEY (person_id)
-        REFERENCES person (person_id)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        REFERENCES person (person_id),
     FOREIGN KEY (role_id)
         REFERENCES role (role_id)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
 );

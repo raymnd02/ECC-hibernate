@@ -144,6 +144,7 @@ public class Checker {
 			System.out.print(message);
 			strChecker = sc.nextLine();
 		}
+		returnVal = (strChecker.equalsIgnoreCase("Y") ? true : false);
 			
 		return returnVal;
 	}

@@ -83,7 +83,12 @@ public class App {
 				boolean confirmation = Checker.inputBoolean("Are you sure?(Y/N): ",sc);
 				if(confirmation == true){
 					try {
-						personService.delete(personIdToDelete);
+						Person personToDelete = personService.findById(personIdToDelete);
+						List<Role> deleteRoleToDeletePerson = new ArrayList<>();
+						personToDelete.setRole(deleteRoleToDeletePerson);
+						try{ personService.update(personToDelete); }catch(Exception e) {}
+						try{ personService.delete(personIdToDelete); }catch(Exception e) {}
+						// personService.delete(personIdToDelete);
 					} catch(IllegalArgumentException e) {
 						System.out.println("Error:Person Id not found!!");
 					}
@@ -280,7 +285,19 @@ public class App {
 				boolean confirmationToDeleteRole = Checker.inputBoolean("Are you sure?(Y/N): ",sc);
 				if(confirmationToDeleteRole == true){
 					try {
-						roleService.delete(roleIdToDelete);
+						Role roleToDeletePersonRole = roleService.findById(roleIdToDelete);
+						List<Person> personToDeleteRoles = roleToDeletePersonRole.getPersonRole();
+						for (Person personToDeleteRole : personToDeleteRoles) {
+							role = personToDeleteRole.getRole();
+							if(!role.isEmpty()) {
+								personToDeleteRole.setRole(Service.removeSameRole(role,roleIdToDelete));
+								personService.update(personToDeleteRole);
+							}
+						}
+						personToDeleteRoles.clear();
+						roleToDeletePersonRole.setPersonRole(personToDeleteRoles);
+						roleService.update(roleToDeletePersonRole);
+						try {roleService.delete(roleIdToDelete);} catch(Exception e) {}
 					} catch(Exception e) {
 						System.out.println("Error:Id not found!!");
 					}

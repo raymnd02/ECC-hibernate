@@ -66,7 +66,6 @@ public class PersonService {
         return person;
     }
  
- 
     public PersonDao personDao() {
         return personDao;
     }
