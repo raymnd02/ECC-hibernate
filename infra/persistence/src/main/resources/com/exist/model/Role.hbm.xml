@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.exist.model">
+    <class name="Role" table="role">
+        <id name="roleId" column="role_id">
+            <generator class="native"/>
+        </id>
+        <property name="role" column="role" type = "string"/>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<bag name="personRole" table="person_role"  inverse="true" lazy="false" fetch="select" cascade="all">
+			<key column="role_id" not-null="true"/>
+			<many-to-many entity-name="com.exist.model.Person">
+                <column name="person_id" not-null="true" />
+            </many-to-many>
+		</bag>
+    </class> 
+</hibernate-mapping>

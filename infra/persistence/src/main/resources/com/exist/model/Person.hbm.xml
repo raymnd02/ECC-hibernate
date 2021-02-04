@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.exist.model">
+    <class name="Person" table="person">
+        <id name="personId" column="person_id">
+            <generator class="native"/>
+        </id>
+        <property name="lastName" column="last_name" type = "string" not-null="true"/>
+        <property name="firstName" column="first_name" type = "string" not-null="true"/>
+        <property name="middleName" column="middle_name" type = "string"/>
+        <property name="suffixName" column="suffix_name" type = "string"/>
+        <property name="titleName" column="title_name" type = "string"/>
+        
+        <property name="streetNo" column="street_no" type = "int"/>
+        <property name="barangay" column="barangay" type = "string"/>
+        <property name="municipalityOrCity" column="municipality_city" type = "string"/>
+        <property name="zipcode" column="zipcode" type = "int"/>
+		
+		
+		
+        <property name="birthday" column="birthday" type = "date"/>
+        <property name="gradeWeightedAverage" column="grade_weighted_average" type = "double"/>
+        <property name="dateHired" column="date_hired" type = "date"/>
+        <property name="currentEmployed" column="current_employed" type = "boolean"/>
+		<bag name="contact" lazy="false">
+			<key column="person_id" not-null="false" />
+			<one-to-many class="Contact"/>
+		</bag>
+		
+		<bag name="role" table="person_role" inverse="false" lazy="false" fetch="select" cascade="all">
+			<key column="person_id" not-null="true"/>
+			<many-to-many entity-name="com.exist.model.Role">
+                <column name="role_id" not-null="true" />
+            </many-to-many>
+		</bag>
+		
+    </class> 
+</hibernate-mapping>
