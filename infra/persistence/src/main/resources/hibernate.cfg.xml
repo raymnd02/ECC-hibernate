@@ -22,7 +22,6 @@
 		<mapping resource="com/exist/model/Person.hbm.xml"></mapping>
 		<mapping resource="com/exist/model/Contact.hbm.xml"></mapping>
 		<mapping resource="com/exist/model/Role.hbm.xml"></mapping>
-		<mapping resource="com/exist/model/PersonRole.hbm.xml"></mapping>
 		<!-- <mapping class="com.exist.model.Person"></mapping> -->
 	</session-factory>
 </hibernate-configuration>

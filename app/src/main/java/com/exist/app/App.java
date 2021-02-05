@@ -54,13 +54,13 @@ public class App {
 				int orderList = Checker.inputChecker(message,1,3,sc);
 				if(orderList == 1) {
 					persons = personService.findAllByGWA();
-					if(persons.isEmpty()) {System.out.println("\nNo person on the List!!\n");}
+					if(persons.isEmpty()) {System.out.println("\nNo Person on the List!!\n");}
 				} else if(orderList == 2) {
 					persons = personService.findAllByDateHired();
-					if(persons.isEmpty()) {System.out.println("\nNo person on the List!!\n");}
+					if(persons.isEmpty()) {System.out.println("\nNo Person on the List!!\n");}
 				} else {
 					persons = personService.findAllByLastName();
-					if(persons.isEmpty()) {System.out.println("\nNo person on the List!!\n");}
+					if(persons.isEmpty()) {System.out.println("\nNo Person on the List!!\n");}
 				}
 				for (Person person : persons) {System.out.println("-" + person.toString());}
 				option();
@@ -68,6 +68,9 @@ public class App {
 			case 2:
 				System.out.println("\n");
 				role = roleService.findAll();
+				if(role.isEmpty()) {
+					System.out.println("\nNo Role on the List!!\n");
+				}
 				for (Role roles : role) {
 					System.out.println("-" + roles.toString());
 				}
@@ -88,7 +91,6 @@ public class App {
 						personToDelete.setRole(deleteRoleToDeletePerson);
 						try{ personService.update(personToDelete); }catch(Exception e) {}
 						try{ personService.delete(personIdToDelete); }catch(Exception e) {}
-						// personService.delete(personIdToDelete);
 					} catch(IllegalArgumentException e) {
 						System.out.println("Error:Person Id not found!!");
 					}
@@ -115,12 +117,10 @@ public class App {
 				
 				System.out.println("");
 				int personIdToEdit = Checker.inputChecker("Enter Person Id: ",sc);
-				
 				try {
 					Person personToEdit = personService.findById(personIdToEdit);
 					System.out.println("");
 					int personDetailToEdit = Checker.inputChecker(message,1,13,sc);
-					
 					personService.update(Service.editPerson(personToEdit,personDetailToEdit,sc));
 				} catch(Exception e) {
 					System.out.println("Error:Person Id not found!!");
@@ -172,7 +172,6 @@ public class App {
 					} else {
 						System.out.println("\n\nNo available roles to delete!!");
 					}
-					
 				} catch(Exception e) {
 					System.out.println("\n\nError: Person id doesn't exist!!");
 				}
